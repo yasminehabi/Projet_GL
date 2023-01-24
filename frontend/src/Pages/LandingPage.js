@@ -6,7 +6,7 @@ import googlelogo from '../images/googlelogo.png'
 import {useState, useEffect} from 'react';
 import useFetch from '../hooks/useFetch';
 import jwt_decode from  "jwt-decode";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Navigate } from 'react-router-dom';
 
 
 export default function LandingPage() {
@@ -14,9 +14,9 @@ export default function LandingPage() {
         const [user,setUser]=useState({});
         const navigate = useNavigate();
       
-        const navigateToContacts = () => {
+        const navigateto = () => {
           // 👇️ navigate to /contacts
-          navigate('/Test');
+          navigate('/infopage');
         };
 
         function handlCallbackResponse(response){
@@ -70,8 +70,8 @@ export default function LandingPage() {
                     <p className="text-white "> with google </p>
                     <Link className=" text-white  py-[10px] px-[80px] bg-blue-600 hover:bg-blue-200  " to=""> Authentification </Link>
                     <div id="signInDiv"></div>{
-                     Object.keys(user).length !=0 &&
-                     <button onClick={(e) => handleSignOut(e)}>SignOut</button>
+                     Object.keys(user).length !=0 && <Navigate to ='/infopage'/>
+                    /* <button onClick={(e) => handleSignOut(e)}>SignOut</button>*/
 
       }
 
