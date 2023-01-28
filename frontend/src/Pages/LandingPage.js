@@ -10,15 +10,18 @@ import { useNavigate,Navigate } from 'react-router-dom';
 
 
 export default function LandingPage() {
-    
+        const [test,settest]=useState('');
         const [user,setUser]=useState({});
         const navigate = useNavigate();
-      
+        
         const navigateto = () => {
           // 👇️ navigate to /contacts
-          navigate('/infopage');
+          <Navigate to ='/adduser' state={{ user }}/>
         };
-
+        
+        useEffect(() =>{
+          settest('fghjk');
+        });
         function handlCallbackResponse(response){
                 console.log("Encoded JWT ID token " +response.credential);
                 var userObject =jwt_decode(response.credential);
@@ -46,6 +49,7 @@ export default function LandingPage() {
                   {theme:"outline",size:"large"}
                 );
                 google.accounts.id.prompt();
+                
               
               },[]);
 
@@ -68,12 +72,14 @@ export default function LandingPage() {
             <div className="mt-[30%] flex flex-col justify-center items-center space-y-6 ">
                     <img src={googlelogo} className="w-[50px]" alt="" />
                     <p className="text-white "> with google </p>
-                    <Link className=" text-white  py-[10px] px-[80px] bg-blue-600 hover:bg-blue-200  " to=""> Authentification </Link>
+                     <Link className=" text-white  py-[10px] px-[80px] bg-blue-600 hover:bg-blue-200  " to="/Verify" state={test} > Authentification </Link>
+                    
                     <div id="signInDiv"></div>{
-                     Object.keys(user).length !==0 && <Navigate to ='/infopage'/>
+                     Object.keys(user).length !==0 && <Navigate to ='/Verify' state={{ user }}/>
                     /* <button onClick={(e) => handleSignOut(e)}>SignOut</button>*/
 
       }
+                  
 
          
 

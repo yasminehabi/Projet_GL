@@ -17,7 +17,7 @@ function InfoPage (props) {
   const [address, setadd] = useState('');
   const { state } = useLocation();
   
-  console.log(state);
+  console.log("adduser",state);
   
   useEffect(() =>{
     setName(state.user.given_name);
