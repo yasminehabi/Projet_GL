@@ -1,7 +1,7 @@
 from django.db import models
 
 class Custommer(models.Model):
-    name=models.CharField(max_length=200)
+    name=models.CharField(max_length=300)
     industry=models.CharField(max_length=100)
     
     
