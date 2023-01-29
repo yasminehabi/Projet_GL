@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from findin.models import Custommer,UserModel,Annonce, adresse, théme, catégorie,Annfav,AnnonceModel
+from findin.models import Custommer,UserModel,Annfav,AnnonceModel
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +11,22 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserModel
         fields = '__all__'
+        
+        
+class AnnonceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=AnnonceModel
+        fields = '__all__'
+        
+
+
+
+
+
+
+
+
+class AnnfavSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Annfav
+        fields = ('User', 'titreAnnfav')
