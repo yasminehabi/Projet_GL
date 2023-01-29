@@ -26,6 +26,7 @@ class AddAnnonce extends Component {
         adresseIMB:{ ...txtFieldState,default:""},
         adresseURL:{ ...txtFieldState,default:""},
         image_url:{ ...txtFieldState,default:null},
+        
         annonceur:'',
 
 
