@@ -108,6 +108,7 @@ class AnnfavCreateView(generics.CreateAPIView):
         serializer.save()
 
 
+
 class AnnfavDestroyView(generics.DestroyAPIView):
     serializer_class = AnnfavSerializer
 

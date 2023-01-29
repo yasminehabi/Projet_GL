@@ -27,6 +27,7 @@ class catégorie(models.Model):
 
 # classe adresse
 
+
 class adresse (models.Model):
 
     Wilaya = models.CharField(max_length=200)

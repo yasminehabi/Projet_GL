@@ -37,6 +37,7 @@ class catégorieSerializer(serializers.ModelSerializer):
         model = catégorie
         fields = ("nomcatégorie")
 
+
 class AnnfavSerializer(serializers.ModelSerializer):
     class Meta:
         model = Annfav
