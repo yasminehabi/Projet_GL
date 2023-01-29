@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation,Navigate } from 'react-router-dom';
 import AddUser from './AddUser';
 import AjouterAnn from './AjouterAnn';
+import AddAnnonce from './Addanonce';
 
 export default function Verify() {
   const [userExists,setUserExixts]=useState({});
@@ -59,7 +60,7 @@ export default function Verify() {
  return (
     <>
       
-      {notFound ? <AddUser/> :<AjouterAnn/>}
+      {notFound ? <AddUser/> :<AddAnnonce  state= {state.user.email}/>}
       
       
 

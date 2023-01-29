@@ -1,9 +1,9 @@
-from findin.models import Custommer,UserModel
-from findin.serializers import CustomerSerializer,UserSerializer
+from findin.models import Custommer,UserModel,Annonce, adresse, théme, catégorie,Annfav,AnnonceModel
+from findin.serializers import CustomerSerializer,UserSerializer,AnnonceSerializer, adresseSerializer, thémeSerializer, catégorieSerializer, AnnfavSerializer,AnnonceSerializer
 from django.http import JsonResponse, Http404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,generics
 
 @api_view(['GET','POST'])
 def customers(request):

@@ -17,11 +17,21 @@ from django.contrib import admin
 from django.urls import path
 from findin import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/customers/',views.customers, name='customers'),
     path('api/customers/<int:id>',views.customer, name='customer'),
     path('api/users/',views.users, name='users'),
-    path('api/users/<int:id>',views.user, name='user')
-
+    path('api/users/<int:id>',views.user, name='user'),
+    path('annonces/', views.AnnonceListAPIView.as_view(), name='annonce-list'),
+    path('annoncesFav/', views.AnnonceListFav.as_view(), name='annonce-list'),
+    path('extendusers/<int:pk>/', views.ExtendUserUpdate.as_view(), name='extenduser-update'),
+    path('annfav/create/', views.AnnfavCreateView.as_view(), name='annfav-create'),
+    path('annfav/delete/', views.AnnfavDestroyView.as_view(), name='annfav-delete'),
+    path('api/annonces/',views.annonces, name='annonces'),
+     path('api/annonces/<str:email>',views.annoncespost, name='annonces'),
+    path('api/annonce/<int:id>',views.annonce, name='annonce'),
+    path('api/annonceuser/<str:email>',views.AnnonceUser, name='annonce_user'),
+    path('api/connect/<str:email>',views.UserConnect, name='connect'),
 ]

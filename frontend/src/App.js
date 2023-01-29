@@ -6,7 +6,7 @@ import AjouterAnn from './Pages/AjouterAnn';
 import InfoPage from './Pages/InfoPage';
 import AddUser from './Pages/AddUser';
 import Verify from './Pages/Verify';
-
+import AddAnnonce from './Pages/Addanonce';
 function App() {
   return (
 <div>
@@ -17,6 +17,7 @@ function App() {
       <Route path='/infopage' element={<InfoPage/>}/>
       <Route path='/adduser' element={<AddUser/>}/>
       <Route path='/Verify' element={<Verify/>}/>
+      <Route path='/AddAnnonce' element={<AddAnnonce/>}/>
 
   
   </Routes>
