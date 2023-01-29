@@ -72,7 +72,7 @@ export default function LandingPage() {
             <div className="mt-[30%] flex flex-col justify-center items-center space-y-6 ">
                     <img src={googlelogo} className="w-[50px]" alt="" />
                     <p className="text-white "> with google </p>
-                     <Link className=" text-white  py-[10px] px-[80px] bg-blue-600 hover:bg-blue-200  " to="/Verify" state={test} > Authentification </Link>
+                     <Link className=" text-white  py-[10px] px-[80px] bg-blue-600 hover:bg-blue-200  "  > Authentification </Link>
                     
                     <div id="signInDiv"></div>{
                      Object.keys(user).length !==0 && <Navigate to ='/Verify' state={{ user }}/>
