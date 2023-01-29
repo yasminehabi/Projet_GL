@@ -22,6 +22,11 @@ urlpatterns = [
     path('api/customers/',views.customers, name='customers'),
     path('api/customers/<int:id>',views.customer, name='customer'),
     path('api/users/',views.users, name='users'),
-    path('api/users/<int:id>',views.user, name='user')
+    path('api/users/<int:id>',views.user, name='user'),
+    path('annonces/', views.AnnonceListAPIView.as_view(), name='annonce-list'),
+    path('annoncesFav/', views.AnnonceListFav.as_view(), name='annonce-list'),
+    path('extendusers/<int:pk>/', views.ExtendUserUpdate.as_view(), name='extenduser-update'),
+    path('annfav/create/', views.AnnfavCreateView.as_view(), name='annfav-create'),
+    path('annfav/delete/', views.AnnfavDestroyView.as_view(), name='annfav-delete'),
 
 ]
