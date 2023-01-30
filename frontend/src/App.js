@@ -7,6 +7,7 @@ import InfoPage from './Pages/InfoPage';
 import AddUser from './Pages/AddUser';
 import Verify from './Pages/Verify';
 import AddAnnonce from './Pages/Addanonce';
+import Profil from './Pages/Profil';
 function App() {
   return (
 <div>
@@ -18,6 +19,7 @@ function App() {
       <Route path='/adduser' element={<AddUser/>}/>
       <Route path='/Verify' element={<Verify/>}/>
       <Route path='/AddAnnonce' element={<AddAnnonce/>}/>
+      <Route path='/Profil' element={<Profil/>}/>
 
   
   </Routes>
