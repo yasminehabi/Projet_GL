@@ -1,11 +1,14 @@
 import annonce  from '../images/annonce.jpg' ;
 import React, { useState,Component, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+let prop;
 //import Navbar from '../components/Navbar';
 function Affichage () {
   const location=useLocation();
   const id=location.state.annonce.id;
+  const read=location.state.annonce
   const [Annonce,setannonce]=useState();
+  const [realAnnonce,setreal]=useState();
   
   useEffect(() =>{
     //console.log("modification",location.state.annonce)
@@ -14,11 +17,12 @@ function Affichage () {
     .then((response) =>response.json())
     .then((data) =>{
         console.log(data);
+        setreal(data.annonces);
         //setannonce(data.annonces);
         //setTempCustomer(data.customer);
     });
 } ,[]);
-
+prop=realAnnonce;
 function updateCustomer(e) {
   e.preventDefault();
   const url = 'http://127.0.0.1:8000/api/annonce/' + id;
@@ -37,7 +41,7 @@ function updateCustomer(e) {
           return response.json();
       })
       .then((data) => {
-          //setannonce(data.annonces);
+          
           //setChanged(false);
           
       })
@@ -47,14 +51,15 @@ function updateCustomer(e) {
 }
 
   //<Navbar/>
+  //
     return (
  <div class='w-full bg-white '>
  
   <div class="h-100 w-150 pb-20 mt-20 mb-20 ml-4 sm:ml-20 mr-4 sm:mr-20 flex shadow-2xl center rounded-2xl pt-14 shadow-blue-500/100 "> 
   <div class="flex flex-col ml-4 sm:ml-20 font-semibold">
-                    <p class=" text-xl text-sky-400 font-bold  ">Critéres de l'annonce choisie  </p>
-                    <img src={annonce} class="ml-30 mt-30 mb-20 w-40 sm:w-80 h-90 sm:h-90 "  alt="annonce" />
+                    <p class=" text-xl text-sky-400 font-bold  ">Vous pouvez modifier un ou plusieurs des critéres  </p>
                     
+                    <img src={require(`../Components${read.image_url}`)}  class="ml-30 mt-30 mb-20 w-40 sm:w-80 h-90 sm:h-90 "  alt="annonce" />
 
  </div>   
  <form
@@ -65,8 +70,8 @@ function updateCustomer(e) {
     <div class="flex flex-col space-y-4 ml-1 sm:ml-20  text-sm  sm:text-base font-semibold mt-10">
     <textarea type="text"
     id='titreAnn'
-     placeholder=" modifier le titre de l'annonce"
-     //value={Annonce.titreAnn}
+     placeholder={read.titreAnn}
+     //value={read.titreAnn}
      onChange={(e) => {
       //setChanged(true);
       setannonce({
@@ -88,11 +93,11 @@ function updateCustomer(e) {
      catégorie: e.target.value,
      });
      }}
-    placeholder=" modifier la catégorie" 
+    placeholder={read.catégorie} 
 
     class="text-sm  h-15 w-60 rounded-2xl border-radius: 15px ;border-width: 1px ; border border-indigo-600 " />
     <textarea type="text" 
-    placeholder=" modifier le théme"
+    placeholder={read.théme}
     id='théme'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.théme}
@@ -107,7 +112,7 @@ function updateCustomer(e) {
     class="text-sm  h-15 w-60 rounded-2xl border-radius: 15px ;border-width: 1px ; border border-indigo-600 " />
 
     <textarea type="text"
-     placeholder=" modifier modalité" 
+     placeholder={read.modalité}
      id='modalité'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.théme}
@@ -123,7 +128,7 @@ function updateCustomer(e) {
     
 
     <textarea type="text" 
-    placeholder=" modifier Description" 
+    placeholder={read.Description}
     id='Description'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.Description}
@@ -137,7 +142,7 @@ function updateCustomer(e) {
     class="text-sm  h-15 w-60 rounded-2xl border-radius: 15px ;border-width: 1px ; border border-indigo-600 " />
     
     <textarea type="text" 
-    placeholder=" modifier le tarif" 
+    placeholder={read.tarif}
     id='tarif'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.modalité}
@@ -153,7 +158,7 @@ function updateCustomer(e) {
 
 
     <textarea type="text" 
-    placeholder=" modifier la Wilaya'"
+    placeholder={read.Wilaya}
     id='Wilaya'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.Description}
@@ -167,7 +172,7 @@ function updateCustomer(e) {
      class="text-sm  h-15 w-60 rounded-2xl border-radius: 15px ;border-width: 1px ; border border-indigo-600 " />
     
     <textarea type="text" 
-    placeholder=" modifier la Commune'"
+    placeholder={read.Commune}
     id='Commune'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.Description}
@@ -182,7 +187,7 @@ function updateCustomer(e) {
      
 
      <textarea type="text" 
-    placeholder=" modifier l'adresseIMB'"
+    placeholder={read.adresseIMB}
     id='adresseIMB'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.Description}
@@ -196,7 +201,7 @@ function updateCustomer(e) {
      class="text-sm  h-15 w-60 rounded-2xl border-radius: 15px ;border-width: 1px ; border border-indigo-600 " />
      
      <textarea type="text" 
-    placeholder=" modifier adresseURL'"
+    placeholder={read.adresseURL}
     id='adresseURL'
     //placeholder=" modifier le titre de l'annonce"
     //value={Annonce.Description}
