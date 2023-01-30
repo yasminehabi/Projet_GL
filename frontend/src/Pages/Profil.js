@@ -2,6 +2,7 @@
 import { useState,useEffect  } from 'react';
 import Ellipse1 from '../images/Ellipse1.png'
 import Mesann from '../Components/Mesann';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Profil(props) {
@@ -10,6 +11,7 @@ export default function Profil(props) {
   //);
   const [Annonces, setAnnonces] = useState();
   const [user, setuser] = useState('');
+  const Navigate = useNavigate();
 
   useEffect(() =>{
    console.log('Fetching...');
@@ -53,7 +55,7 @@ return(
      </div>
      <button class='rounded-md bg-blue-300 font-bold text-white text-xs drop-shadow-lg sm:text-base h-10 w-40 ml-2 sm:ml-[13%] lg:ml-[40%] 
      xl:ml-[55%] 
-     mt-24'>Modifier profil</button>
+     mt-24'onClick={()=>Navigate('/ModifierProfil',{state:{user}}) }>Modifier profil</button>
       
     </div>
 

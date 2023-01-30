@@ -153,7 +153,7 @@ class AnnonceListAPIView(generics.ListAPIView):
     
     
     
-@api_view(['GET'])
+@api_view(['PUT','GET'])
 def UserConnect(request,email):
     try:
         data=UserModel.objects.get(email=email)
@@ -162,6 +162,12 @@ def UserConnect(request,email):
     if request.method == 'GET':
        serializer=UserSerializer(data)
        return Response({'user': serializer.data})
+    elif request.method =='PUT':
+        serializer=UserSerializer(data,data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'users':serializer.data})
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
    
 @api_view(['GET','POST'])     
 def annonces(request):

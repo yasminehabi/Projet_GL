@@ -9,6 +9,7 @@ import Verify from './Pages/Verify';
 import AddAnnonce from './Pages/Addanonce';
 import Profil from './Pages/Profil';
 import Affichage from './Pages/Modification';
+import Changeprflinf from './Pages/Changeprflinf';
 function App() {
   return (
 <div>
@@ -22,6 +23,7 @@ function App() {
       <Route path='/AddAnnonce' element={<AddAnnonce/>}/>
       <Route path='/Profil' element={<Profil/>}/>
       <Route path='/Affichage' element={<Affichage/>}/>
+      <Route path='/ModifierProfil' element={<Changeprflinf/>}/>
 
   
   </Routes>
