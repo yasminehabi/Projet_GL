@@ -13,7 +13,7 @@ export default function Mesann(props) {
 
   useEffect(() =>{
    console.log('Fetching...');
-   fetch('http://127.0.0.1:8000/api/annonces/'+"y_habi@estin.dz")
+   fetch('http://127.0.0.1:8000/api/annonces/'+props.email)
    .then((response) =>response.json())
    .then((data) =>{
        console.log(data);

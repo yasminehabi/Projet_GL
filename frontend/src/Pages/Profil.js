@@ -59,7 +59,7 @@ return(
 
    </div>
     <div class='mt-28 mx-6  mb-6 '>
-    <Mesann Annonces={Annonces} title='Mes Annonces' handleDelete={handleDelete}/>
+    <Mesann Annonces={Annonces} title='Mes Annonces' handleDelete={handleDelete} email={props.state}/>
     </div>
 
 
