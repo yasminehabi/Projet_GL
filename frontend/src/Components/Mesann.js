@@ -40,13 +40,13 @@ export default function Mesann(props) {
             return(
                 
             <div className=' flex flex-row bg-grey-50 rounded overflow-hidden  border-y-2 border-x-2 border-grey-100 shadow-md relative hover:shadow-xl ' key={annonce.id} onClick={()=>Navigate('/Affichage',{state:{annonce}}) }>
-     <img src={require(`.${annonce.image_url}`)}  alt="div" class='w-32 h-full sm:w-48 object-cover '></img>
+     <img src={require(`.${annonce.image_url}`)}  alt="image " class='w-32 h-full sm:w-48 object-cover '></img>
      
      
      <div className='m-4 space-y-1'>
      <p className='text-xl text-blue-400'></p>
      <p className='text-sm text-blue-400'></p>
-    <p>Par : {annonce.Description}</p>
+    <p>Par : {annonce.annonceur}</p>
     <p>{annonce.tarif}</p>
     <button onClick={()=>props.handleDelete(annonce.id)}>delete Annonce</button>
        

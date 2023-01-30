@@ -72,25 +72,17 @@ def user(request,id):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
+
 class AnnonceListFav(generics.ListAPIView):
     serializer_class = AnnonceSerializer
 
     def get_queryset(self):
-        r_id = self.request.data.get('r')
-        try:
-            extenduser = UserModel.objects.get(r=r_id)
-            annfav_list = Annfav.objects.filter(User=extenduser.r)
-            annonce_list = []
-            for annfav in annfav_list:
-                annonce = AnnonceModel.objects.get(id=annfav.titreAnnfav.id)
-                annonce_list.append(annonce)
-            return annonce_list
-        except UserModel.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-class ExtendUserUpdate(generics.RetrieveUpdateAPIView):
-    queryset = UserModel.objects.all()
-    serializer_class = UserSerializer
+        user = self.kwargs['user']
+        user_annfav = Annfav.objects.filter(User=user)
+        annonce_ids = [annfav.titreAnnfav.id for annfav in user_annfav]
+        return AnnonceModel.objects.filter(id__in=annonce_ids)
 
 
 class AnnfavCreateView(generics.CreateAPIView):
@@ -99,28 +91,25 @@ class AnnfavCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         user_id = self.request.data.get('User')
         user = UserModel.objects.get(id=user_id)
-        titreAnnfav_id = self.request.data.get('titreAnnfav')
-        titreAnnfav = AnnonceModel.objects.get(id=titreAnnfav_id)
-        annfav = Annfav.objects.filter(User=user, titreAnnfav=titreAnnfav).first()
+        titreAnnfav = self.request.data.get('titreAnnfav')
+        annfav = Annfav.objects.filter(
+            User=user, titreAnnfav=titreAnnfav).first()
         if annfav:
             # Annfav instance already exists
             return
         serializer.save()
 
 
-
 class AnnfavDestroyView(generics.DestroyAPIView):
     serializer_class = AnnfavSerializer
 
-    
     def perform_destroy(self, instance):
         user_id = self.request.data.get('User')
         user = UserModel.objects.get(id=user_id)
-        titreAnnfav_id = self.request.data.get('titreAnnfav')
-        titreAnnfav = AnnonceModel.objects.get(id=titreAnnfav_id)
+        titreAnnfav = self.request.data.get('titreAnnfav')
+        titreAnnfav = AnnonceModel.objects.get(id=titreAnnfav)
         annfav = Annfav.objects.get(User=user, titreAnnfav=titreAnnfav)
         annfav.delete()
-
 
 class AnnonceListAPIView(generics.ListAPIView):
     queryset = AnnonceModel.objects.all()
@@ -128,27 +117,48 @@ class AnnonceListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         search = self.request.query_params.get('search', None)
-        modalité = self.request.query_params.get('modalité', None)
+        module = self.request.query_params.get('module', None)
         wilaya = self.request.query_params.get('wilaya', None)
         commune = self.request.query_params.get('commune', None)
+        start_date = self.request.query_params.get('start_date', None)
+        end_date = self.request.query_params.get('end_date', None)
 
-        if search is not None :
+        if search is not None:
             queryset = AnnonceModel.objects.filter(titreAnn__icontains=search)
-            if modalité:
-                queryset = queryset.filter(modalité=modalité)
+            if module:
+                queryset = queryset.filter(théme=module)
             if wilaya:
-                queryset = queryset.filter(lieudeFormation__Wilaya=wilaya)
+                queryset = queryset.filter(Wilaya=wilaya)
             if commune:
-                queryset = queryset.filter(lieudeFormation__Commune=commune)
-        else :
+                queryset = queryset.filter(Commune=commune)
+            if start_date and end_date:
+                start_datetime = datetime.datetime.combine(datetime.datetime.strptime(
+                    start_date, "%Y-%m-%d").date(), datetime.time.min)
+                end_datetime = datetime.datetime.combine(datetime.datetime.strptime(
+                    end_date, "%Y-%m-%d").date(), datetime.time.max)
+                queryset = queryset.filter(
+                    date__range=[start_datetime, end_datetime])
+        else:
             queryset = AnnonceModel.objects
-            if modalité:
-                queryset = queryset.filter(modalité=modalité)
+            if module:
+                queryset = queryset.filter(théme=module)
             if wilaya:
-                queryset = queryset.filter(lieudeFormation__Wilaya=wilaya)
+                queryset = queryset.filter(Wilaya=wilaya)
             if commune:
-                queryset = queryset.filter(lieudeFormation__Commune=commune)
+                queryset = queryset.filter(Commune=commune)
+            if start_date and end_date:
+                start_datetime = datetime.datetime.combine(datetime.datetime.strptime(
+                    start_date, "%Y-%m-%d").date(), datetime.time.min)
+                end_datetime = datetime.datetime.combine(datetime.datetime.strptime(
+                    end_date, "%Y-%m-%d").date(), datetime.time.max)
+                queryset = queryset.filter(
+                    date__range=[start_datetime, end_datetime])
         return queryset
+
+
+class ExtendUserUpdate(generics.RetrieveUpdateAPIView):
+    queryset = UserModel.objects.all()
+    serializer_class = UserSerializer
     
     
     

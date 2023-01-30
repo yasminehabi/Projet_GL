@@ -30,4 +30,18 @@ urlpatterns = [
     path('api/annonces/<str:email>',views.annoncepost, name='annonce_user'),
     path('api/connect/<str:email>',views.UserConnect, name='connect'),
     path('api/annonceuser/<str:email>',views.AnnonceUser, name='annonce_user'),
+    
+    path('api/Searchann/', views.AnnonceListAPIView.as_view(), name='annonce-list'),
+
+
+    path('api/annoncesFav/<int:user>/',
+         views.AnnonceListFav.as_view(), name='annonce-list'),
+    # path('extendusers/<int:pk>/', views.ExtendUserUpdate.as_view(), name='extenduser-update'),
+    path('api/annfav/create/', views.AnnfavCreateView.as_view(), name='annfav-create'),
+    path('api/annfav/delete/', views.AnnfavDestroyView.as_view(),
+         name='annfav-delete'),
+
+    
+    
+    
 ]

@@ -14,9 +14,10 @@ class UserSerializer(serializers.ModelSerializer):
         
         
 class AnnonceSerializer(serializers.ModelSerializer):
+    annonceur = serializers.CharField(source='annonceur.email')
     class Meta:
         model=AnnonceModel
-        fields = '__all__'
+        fields = ('titreAnn','catégorie','théme','modalité','Description','tarif','Wilaya','Commune','adresseIMB','adresseURL','image_url','date','annonceur')
         
 
 

@@ -1,9 +1,9 @@
-//import Navbar from '../components/Navbar';
+
 import { useState,useEffect  } from 'react';
 import Ellipse1 from '../images/Ellipse1.png'
 import Mesann from '../Components/Mesann';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar from "../Components/Navbar";
 
 export default function Profil(props) {
  //const [Annonces,setAnnonces] = useState(
@@ -34,7 +34,7 @@ export default function Profil(props) {
        console.log("Annonces",Annonces)
    });
 } ,[]);
-  //<Navbar/>
+  //
    
   const handleDelete =(id)=>{
      const newAnnonces = Annonces.filter(Annonce => Annonce.id !== id);
@@ -43,7 +43,7 @@ export default function Profil(props) {
 
 return(
  <div class='w-full h-screen bg-white '>
-   
+   <Navbar/>
    
    <div class=' flex flex-row w-full bg-zinc-300 h-48 shadow-md border-b border-grey-500 drop-shadow-lg'>
     <div class='flex flex-row w-full h-40  mt-28  '>

@@ -1,6 +1,10 @@
+import { useLocation } from "react-router-dom";
+
 const Navbar = () => {
+  
  return ( 
   <nav class="flex p-2 shadow-md w-full min-w-fit m-y-0 m-x-auto items-center border-b border-grey-500 ">
+    
     <div class='flex flex-row space-x-10'>
     <h1 class='text-blue-400  text-4xl sm:text-5xl font-body pl-1 pt-1 sm:pl-5 '> FindIn </h1>
    <button class='flex flex-row items-center rounded-md bg-blue-300 font-bold py-0.7 my-2.5 px-2  sm:px-3  cursor-pointer text-white text-xs drop-shadow-lg sm:text-base  '>
@@ -29,7 +33,7 @@ const Navbar = () => {
    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
    </svg>
-   <a href="/create" class='ml-5 text-black text-xs sm:text-base pr-1.5'>Mon profil</a>
+   <a href="/Profil" class='ml-5 text-black text-xs sm:text-base pr-1.5'>Mon profil</a>
    </div>
     
     

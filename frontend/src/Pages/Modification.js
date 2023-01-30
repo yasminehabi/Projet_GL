@@ -1,8 +1,9 @@
 import annonce  from '../images/annonce.jpg' ;
 import React, { useState,Component, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
 let prop;
-//import Navbar from '../components/Navbar';
+
 function Affichage () {
   const location=useLocation();
   const id=location.state.annonce.id;
@@ -54,7 +55,7 @@ function updateCustomer(e) {
   //
     return (
  <div class='w-full bg-white '>
- 
+ <Navbar/>
   <div class="h-100 w-150 pb-20 mt-20 mb-20 ml-4 sm:ml-20 mr-4 sm:mr-20 flex shadow-2xl center rounded-2xl pt-14 shadow-blue-500/100 "> 
   <div class="flex flex-col ml-4 sm:ml-20 font-semibold">
                     <p class=" text-xl text-sky-400 font-bold  ">Vous pouvez modifier un ou plusieurs des critéres  </p>
