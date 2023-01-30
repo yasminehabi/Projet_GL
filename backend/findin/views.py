@@ -198,7 +198,7 @@ def annoncepost(request,email):
             return Response({'annonces':serializer.data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['GET','POST','DELETE'])   
+@api_view(['GET','PATCH','DELETE'])   
 def annonce(request,id):
     try:
         data=AnnonceModel.objects.get(pk=id)
@@ -210,8 +210,8 @@ def annonce(request,id):
     elif (request.method =='DELETE') :
         data.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    elif request.method =='POST':
-        serializer=AnnonceSerializer(data,data=request.data)
+    elif request.method =='PATCH':
+        serializer=AnnonceSerializer(data,data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response({'annonces':serializer.data})

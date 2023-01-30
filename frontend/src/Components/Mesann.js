@@ -1,5 +1,5 @@
 import '../../src/App.css'
-
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useState,useEffect  } from 'react';
 export default function Mesann(props) {
   const [Annonces, setAnnonces] = useState();
@@ -7,13 +7,14 @@ export default function Mesann(props) {
   const [image, setimage] = useState('');
   
   useEffect(()=>{
+    console.log("mesann",props.email)
     console.log(props.Annonces)
   })
   
 
   useEffect(() =>{
    console.log('Fetching...');
-   fetch('http://127.0.0.1:8000/api/annonces/'+props.email)
+   fetch('http://127.0.0.1:8000/api/annonces/'+props.email.email)
    .then((response) =>response.json())
    .then((data) =>{
        console.log(data);
@@ -24,7 +25,7 @@ export default function Mesann(props) {
    });
 } ,[]);
    
-
+ const Navigate = useNavigate();
 
  
  return ( 
@@ -38,7 +39,7 @@ export default function Mesann(props) {
             
             return(
                 
-            <div className=' flex flex-row bg-grey-50 rounded overflow-hidden  border-y-2 border-x-2 border-grey-100 shadow-md relative hover:shadow-xl ' key={annonce.id}>
+            <div className=' flex flex-row bg-grey-50 rounded overflow-hidden  border-y-2 border-x-2 border-grey-100 shadow-md relative hover:shadow-xl ' key={annonce.id} onClick={()=>Navigate('/Affichage',{state:{annonce}}) }>
      <img src={require(`.${annonce.image_url}`)}  alt="div" class='w-32 h-full sm:w-48 object-cover '></img>
      
      
@@ -48,6 +49,7 @@ export default function Mesann(props) {
     <p>Par : {annonce.Description}</p>
     <p>{annonce.tarif}</p>
     <button onClick={()=>props.handleDelete(annonce.id)}>delete Annonce</button>
+       
 
      </div>
     
